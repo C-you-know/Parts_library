@@ -1,16 +1,16 @@
 #ifndef PARTS_H
 #define PARTS_H
 
-class LED
+class DC_Component
 {
     public:
     int PINa;
     int PINb;
 
-    LED(int a, int b)
+    class DC_Component(int pos, int neg)
     {
-        PINa = a;
-        PINb = b;
+        PINa = pos;
+        PINb = neg;
     }
 
     void initialize()
@@ -32,6 +32,26 @@ class LED
         digitalWrite(PINa, HIGH);
         digitalWrite(PINb, LOW);
     } 
+};
+
+class LED: public DC_Component
+{
+  public:
+  LED(int pos, int neg)
+  {
+    DC_Component(pos,neg);
+  }
+
+};
+
+class Motor: public DC_Component
+{
+  public:
+  Motor(int pos, int neg)
+  {
+    DC_Component(pos,neg);
+  }
+
 };
 
 
