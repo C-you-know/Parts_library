@@ -54,5 +54,22 @@ class Motor: public DC_Component
 
 };
 
+class sensor
+{
+  public:
+  int PINd;
+
+  sensor(int pin):PINd(pin) {}
+
+  void initialize(int pin)
+  {
+    pinMode(pin, INPUT);
+  }
+
+  void read()
+  {
+    return digitalRead(this->PINd);
+  }
+};
 
 #endif
