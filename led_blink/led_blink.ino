@@ -1,10 +1,10 @@
 
 #include "parts.h"
 
-auto L1 = LED(1,2);
-auto L2 = LED(14,15);
-auto L3 = LED(3,4);
-auto L4 = LED(16,17);
+LED L1(1, 2);
+LED L2 = LED(14,15);
+LED L3 = LED(3,4);
+LED L4 = LED(16,17);
 
 void setup() 
 {

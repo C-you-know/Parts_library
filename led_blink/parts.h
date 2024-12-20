@@ -7,7 +7,10 @@ class DC_Component
     int PINa;
     int PINb;
 
-    class DC_Component(int pos, int neg)
+    DC_Component()
+    {}
+
+    DC_Component(int pos, int neg)
     {
         PINa = pos;
         PINb = neg;
@@ -37,6 +40,12 @@ class DC_Component
 class LED: public DC_Component
 {
   public:
+
+  LED()
+  {
+    DC_Component();
+  }
+
   LED(int pos, int neg)
   {
     DC_Component(pos,neg);
@@ -47,9 +56,28 @@ class LED: public DC_Component
 class Motor: public DC_Component
 {
   public:
+  Motor()
+  {
+    DC_Component();
+  }
+
   Motor(int pos, int neg)
   {
     DC_Component(pos,neg);
+  }
+
+  void on(bool front=true)
+  {
+    if(front)
+    {
+      digitalWrite(PINa, HIGH);
+      digitalWrite(PINb, LOW);
+    }
+    else
+    {
+      digitalWrite(PINa, LOW);
+      digitalWrite(PINb, HIGH);
+    }
   }
 
 };
@@ -66,9 +94,30 @@ class sensor
     pinMode(pin, INPUT);
   }
 
-  void read()
+  int read()
   {
     return digitalRead(this->PINd);
+  }
+};
+
+class pipeline
+{
+  public:
+  String input;
+
+  void load(String a)
+  {
+    this->input = a;
+  }
+
+  String value()
+  {
+    return this->input;
+  }
+
+  void clear()
+  {
+    this->input = "z";
   }
 };
 
